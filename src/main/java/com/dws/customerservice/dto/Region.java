@@ -27,5 +27,4 @@ public class Region {
     public void setRegion(String region) {
         this.region = region;
     }
-
 }
