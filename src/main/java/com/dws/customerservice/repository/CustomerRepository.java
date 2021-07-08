@@ -22,7 +22,7 @@ public class CustomerRepository {
 
     public List<Customer> getCustomers(){
         List<Customer> customers = new ArrayList<>();
-        customers = jdbcTemplate.query("SELECT * FROM customer c, region r WHERE c.id_region = r.id;", new RowMapper<Customer>() {
+        customers = jdbcTemplate.query("SELECT * FROM customer;", new RowMapper<Customer>() {
 			
                 @Override
                 public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -32,12 +32,7 @@ public class CustomerRepository {
                     customer.setApellidos(rs.getString(3));
                     customer.setRfc(rs.getString(4));
                     customer.setCorreo(rs.getString(5));
-				
-                    Region region = new Region();
-                    region.setId(rs.getInt(7));
-                    region.setRegion(rs.getString(8));
-				
-                    customer.setRegion(region);
+                    customer.setId_region(rs.getInt(6));
 				
                     return customer;
                 }
@@ -58,12 +53,7 @@ public class CustomerRepository {
                     customer.setApellidos(rs.getString(3));
                     customer.setRfc(rs.getString(4));
                     customer.setCorreo(rs.getString(5));
-
-                    Region region = new Region();
-                    region.setId(rs.getInt(7));
-                    region.setRegion(rs.getString(8));
-
-                    customer.setRegion(region);
+                    customer.setId_region(rs.getInt(6));
 
                     return customer;
                 }
@@ -78,7 +68,7 @@ public class CustomerRepository {
                             + "'" + customer.getApellidos() + "',"
                             + "'" + customer.getRfc() + "',"
                             + "'" + customer.getCorreo() + "',"
-                            + "'" + customer.getRegion().getId() + "'"
+                            + "'" + customer.getId_region() + "'"
                             + ");");
         RespuestaApi msg = new RespuestaApi();
         msg.setMessage("El cliente ha sido registrado.");
@@ -92,7 +82,7 @@ public class CustomerRepository {
                             + "apellidos = '" + customer.getApellidos() + "',"
                             + "rfc = '" + customer.getRfc() + "',"
                             + "correo = '" + customer.getCorreo() + "',"
-                            + "id_region = '" + customer.getRegion().getId() + "' "
+                            + "id_region = '" + customer.getId_region() + "' "
                             + "WHERE id = " + id + ";");
         RespuestaApi msg = new RespuestaApi();
         msg.setMessage("El cliente ha sido actualizado.");
