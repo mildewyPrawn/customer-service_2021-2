@@ -27,9 +27,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getCustomer(@PathVariable("id") int id) {
-        return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
+    @GetMapping("/{rfc}")
+    public ResponseEntity<Object> getCustomer(@PathVariable("rfc") String rfc) {
+        return new ResponseEntity<>(customerService.getCustomer(rfc), HttpStatus.OK);
     }
 
     @PostMapping

@@ -41,9 +41,9 @@ public class CustomerRepository {
         return customers;
     }
 
-    public Customer getCustomer(int id) {
+    public Customer getCustomer(String rfc) {
         Customer customer = new Customer();
-        customer = jdbcTemplate.queryForObject("SELECT * FROM customer c, region r WHERE c.id_region = r.id AND c.id = " + id + ";", new RowMapper<Customer>() {
+        customer = jdbcTemplate.queryForObject("SELECT * FROM customer c, region r WHERE c.id_region = r.id AND c.rfc = '" + rfc + "';", new RowMapper<Customer>() {
 
                 @Override
                 public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {

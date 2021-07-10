@@ -9,7 +9,7 @@ public interface CustomerService {
 
     public List<Customer> getCustomers();
 
-    public Customer getCustomer(int id);
+    public Customer getCustomer(String rfc);
 
     public RespuestaApi createCustomer(Customer customer);
 

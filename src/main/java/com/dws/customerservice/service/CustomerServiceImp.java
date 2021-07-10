@@ -21,8 +21,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Customer getCustomer(int id) {
-        return customerRepository.getCustomer(id);
+    public Customer getCustomer(String rfc) {
+        return customerRepository.getCustomer(rfc);
     }
 
     @Override
